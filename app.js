@@ -2,7 +2,7 @@ const app=document.querySelector('#app');
 const site=window.SITE_DATA;
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const asset=value=>new URL(value,document.baseURI).href;
-const media=(v,kind)=>asset(`./media/${kind==='cover'?'covers':'videos'}/${kind==='cover'?v.coverFile:v.videoFile}`);
+const media=(v,kind)=>{const url=asset(`./media/${kind==='cover'?'covers':'videos'}/${kind==='cover'?v.coverFile:v.videoFile}`);return kind==='cover'?url:`${url}?quality=900p-crf27-v1`;};
 let activeCategory='all',query='';
 
 document.addEventListener('contextmenu',e=>{if(e.target.closest('video,.thumb img'))e.preventDefault()});
